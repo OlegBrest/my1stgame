@@ -11,6 +11,11 @@ namespace my1stgame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D txtura;
+
+        Vector2 cur_pos = new Vector2(10, 10);
+        Vector2 speed = new Vector2(2, 3);
+
 
         public Game1()
         {
@@ -26,7 +31,6 @@ namespace my1stgame
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
 
             base.Initialize();
         }
@@ -37,10 +41,8 @@ namespace my1stgame
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            txtura = Content.Load<Texture2D>("1506107");
         }
 
         /// <summary>
@@ -49,7 +51,6 @@ namespace my1stgame
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -61,8 +62,7 @@ namespace my1stgame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
+            
 
             base.Update(gameTime);
         }
@@ -75,8 +75,10 @@ namespace my1stgame
         {
             GraphicsDevice.Clear(Color.White);
 
-            // TODO: Add your drawing code here
-
+            spriteBatch.Begin();
+            spriteBatch.Draw(txtura, cur_pos);
+            spriteBatch.End();
+             
             base.Draw(gameTime);
         }
     }
